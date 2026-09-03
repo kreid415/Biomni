@@ -246,7 +246,7 @@ def query_europe_pmc(query: str, max_papers: int = 10, max_retries: int = 3) -> 
         if not search_query:
             return "Error querying Europe PMC: Query must not be empty."
 
-        page_size = max(1, min(int(max_papers), 25))
+        page_size = max(1, int(max_papers))
         retries = max(0, int(max_retries))
         records = _search_europe_pmc(search_query, page_size=page_size)
 

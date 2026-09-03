@@ -97,6 +97,19 @@ def test_query_europe_pmc_returns_error_string_on_http_error(monkeypatch):
     assert result == "Error querying Europe PMC: 429 Client Error"
 
 
+def test_query_europe_pmc_passes_max_papers_through(monkeypatch):
+    page_sizes = []
+
+    def fake_search(query, page_size=25):
+        del query
+        page_sizes.append(page_size)
+        return []
+
+    monkeypatch.setattr(literature, "_search_europe_pmc", fake_search)
+    literature.query_europe_pmc("malaria", max_papers=100, max_retries=0)
+    assert page_sizes == [100]
+
+
 def test_query_europe_pmc_rejects_empty_query():
     result = literature.query_europe_pmc("   ")
     assert result == "Error querying Europe PMC: Query must not be empty."
