@@ -19,7 +19,7 @@ description = [
         "required_parameters": [
             {
                 "default": None,
-                "description": "The search query string. Europe PMC fielded queries such as ABSTRACT:\"single cell\" are supported.",
+                "description": 'The search query string. Europe PMC fielded queries such as ABSTRACT:"single cell" are supported.',
                 "name": "query",
                 "type": "str",
             },
