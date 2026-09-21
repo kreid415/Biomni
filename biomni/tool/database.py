@@ -692,7 +692,9 @@ def query_alphafold(
         }
 
 
-TRANSOMICS_CHEN_MANIFEST_URL = "https://raw.githubusercontent.com/PYangLab/TransOmicsData/main/inst/extdata/manifest.txt"
+TRANSOMICS_CHEN_MANIFEST_URL = (
+    "https://raw.githubusercontent.com/PYangLab/TransOmicsData/main/inst/extdata/manifest.txt"
+)
 TRANSOMICS_CHEN_METADATA_URL = (
     "https://raw.githubusercontent.com/PYangLab/TransOmicsData/main/inst/extdata/0.99.0/metadata-chen-organoid.csv"
 )
@@ -748,7 +750,9 @@ def _filter_transomics_chen_assays(assays, assay="all"):
         "sctranscriptome": "sctranscriptome",
     }
     target = aliases.get(assay_name, assay_name)
-    return [row for row in assays if target in row.get("Title", "").lower() or target in row.get("RDataPath", "").lower()]
+    return [
+        row for row in assays if target in row.get("Title", "").lower() or target in row.get("RDataPath", "").lower()
+    ]
 
 
 def _format_transomics_load_code(rdata_path):

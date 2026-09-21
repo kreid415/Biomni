@@ -61,7 +61,9 @@ def test_format_transomicsdata_chen_organoid_includes_experimenthub_paths():
     assert "Omics: phosphoproteome, proteome, transcriptome, single-cell transcriptome" in output
     assert "Title: Chen organoid phosphoproteome" in output
     assert "RDataPath: TransOmicsData/0.99.0/chen-organoid/phosphoproteome.rds" in output
-    assert 'matches <- records[records$rdatapath == "TransOmicsData/0.99.0/chen-organoid/phosphoproteome.rds"]' in output
+    assert (
+        'matches <- records[records$rdatapath == "TransOmicsData/0.99.0/chen-organoid/phosphoproteome.rds"]' in output
+    )
 
 
 def test_query_transomicsdata_chen_organoid_returns_filtered_result(monkeypatch):
