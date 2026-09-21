@@ -33,7 +33,10 @@ def test_format_organoid_cell_atlas_project_returns_metadata_summary():
     output = database._format_organoid_cell_atlas_project(fixture_payload()["hits"][0])
     assert "Project: A human fetal lung cell atlas" in output
     assert "Project ID: 2fe3c60b-ac1a-4c61-9b59-f6556c0fce63" in output
-    assert "HCA Data Portal URL: https://data.humancellatlas.org/explore/projects/2fe3c60b-ac1a-4c61-9b59-f6556c0fce63" in output
+    assert (
+        "HCA Data Portal URL: https://data.humancellatlas.org/explore/projects/2fe3c60b-ac1a-4c61-9b59-f6556c0fce63"
+        in output
+    )
     assert "Bionetwork: Development, Organoid" in output
     assert "Tissue Atlas: Development (v1.0), Organoid-Endoderm (v1.0)" in output
     assert "Organoid Model Organs: lung" in output
@@ -56,7 +59,10 @@ def test_search_organoid_cell_atlas_projects_uses_hca_organoid_filter():
 
 
 def test_search_organoid_cell_atlas_projects_follows_pagination():
-    first_page = {"hits": [], "pagination": {"next": "https://service.azul.data.humancellatlas.org/index/projects?next"}}
+    first_page = {
+        "hits": [],
+        "pagination": {"next": "https://service.azul.data.humancellatlas.org/index/projects?next"},
+    }
     second_page = fixture_payload()
     session = Mock()
     session.get.side_effect = [FakeResponse(first_page), FakeResponse(second_page)]
@@ -70,7 +76,9 @@ def test_search_organoid_cell_atlas_projects_follows_pagination():
 
 
 def test_query_organoid_cell_atlas_projects_returns_formatted_result(monkeypatch):
-    monkeypatch.setattr(database, "_search_organoid_cell_atlas_projects", lambda query, max_results: fixture_payload()["hits"][:1])
+    monkeypatch.setattr(
+        database, "_search_organoid_cell_atlas_projects", lambda query, max_results: fixture_payload()["hits"][:1]
+    )
 
     result = database.query_organoid_cell_atlas_projects("lung", max_results=1)
 

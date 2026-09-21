@@ -55,8 +55,18 @@ description = [
         "description": "Query HCA Data Portal organoid project metadata from the Organoid Cell Atlas/HCA Organoid Network.",
         "name": "query_organoid_cell_atlas_projects",
         "optional_parameters": [
-            {"default": "organoid", "description": "Search terms to match within organoid project metadata", "name": "query", "type": "str"},
-            {"default": 5, "description": "Maximum number of matching projects to return", "name": "max_results", "type": "int"},
+            {
+                "default": "organoid",
+                "description": "Search terms to match within organoid project metadata",
+                "name": "query",
+                "type": "str",
+            },
+            {
+                "default": 5,
+                "description": "Maximum number of matching projects to return",
+                "name": "max_results",
+                "type": "int",
+            },
         ],
         "required_parameters": [],
     },
