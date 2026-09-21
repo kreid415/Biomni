@@ -691,7 +691,9 @@ def query_alphafold(
         }
 
 
-CORTICAL_ORGANOIDS_ATLAS_URL = "https://singlecell.broadinstitute.org/single_cell/study/SCP1756/cortical-organoids-atlas"
+CORTICAL_ORGANOIDS_ATLAS_URL = (
+    "https://singlecell.broadinstitute.org/single_cell/study/SCP1756/cortical-organoids-atlas"
+)
 CORTICAL_ORGANOIDS_CLUSTERS_URL = "https://singlecell.broadinstitute.org/single_cell/api/v1/studies/SCP1756/clusters"
 
 
@@ -704,7 +706,9 @@ def _extract_cortical_organoids_study_metadata(html):
     cell_match = re.search(r'id="cell-count"[^>]*>\s*([^<]+)', html)
     gene_match = re.search(r'id="gene-count"[^>]*>\s*([^<]+)', html)
     summary_match = re.search(r'<div[^>]+id="study-summary"[^>]*>(.*?)</div>\s*<div', html, re.S)
-    summary_text = _clean_cortical_organoids_text(re.sub(r"<[^>]+>", " ", summary_match.group(1))) if summary_match else ""
+    summary_text = (
+        _clean_cortical_organoids_text(re.sub(r"<[^>]+>", " ", summary_match.group(1))) if summary_match else ""
+    )
     page_text = _clean_cortical_organoids_text(re.sub(r"<[^>]+>", " ", html))
     publication_match = re.search(r"Related publications\s+(.*?)\s+(\d{6,})", page_text)
 
@@ -715,7 +719,9 @@ def _extract_cortical_organoids_study_metadata(html):
         "cell_count": _clean_cortical_organoids_text(cell_match.group(1)) if cell_match else "Not available",
         "gene_count": _clean_cortical_organoids_text(gene_match.group(1)) if gene_match else "Not available",
         "summary": summary_text,
-        "publication": _clean_cortical_organoids_text(publication_match.group(1)) if publication_match else "Not available",
+        "publication": _clean_cortical_organoids_text(publication_match.group(1))
+        if publication_match
+        else "Not available",
         "pmid": publication_match.group(2) if publication_match else "Not available",
     }
 
